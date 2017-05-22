@@ -2,6 +2,6 @@
 {
     public interface IIsDisposed : System.IDisposable
     {
-        bool IsDiposed();
+        bool IsDiposed { get; }
     }
 }
