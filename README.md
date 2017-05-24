@@ -1,2 +1,3 @@
 # Disposables
-Offers dispoable objects as standalone library
+
+Inspired by the idea of Reactive.Disposables this library offers dispoable objects as standalone library.
