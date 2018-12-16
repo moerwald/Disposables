@@ -2,25 +2,25 @@
 
 namespace Disposables
 {
-    public class Simple : IIsDisposed
+    /// <summary>
+    /// Wrapes the given action in the disposable pattern.
+    /// </summary>
+    public sealed class SimpleDisposable : IIsDisposed
     {
         private Action _action;
 
-        public static Simple Create (Action action)
-        {
-            return new Simple(action);
-        }
+        public static SimpleDisposable Create(Action action) => new SimpleDisposable(action);
 
-        public Simple(Action action)
-        {
-            _action = action;
-        }
+        public SimpleDisposable(Action action) => _action = action;
 
         public void Dispose()
         {
-            System.Threading.Interlocked.Exchange(ref _action, null)?.Invoke();
+            if (!IsDisposed)
+            {
+                System.Threading.Interlocked.Exchange(ref _action, null)?.Invoke();
+            }
         }
 
-        public bool IsDiposed => _action != null;
+        public bool IsDisposed => _action != null;
     }
 }
